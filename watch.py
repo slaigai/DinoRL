@@ -22,7 +22,7 @@ def mark_template(img, template):
 
 
 def mark_dino(img, dino_template):
-    dino_region = {'left': 0, 'right': 150, 'top': 300, 'bottom': 670}
+    dino_region = {'left': 0, 'right': 150, 'top': 0, 'bottom': 450}
     img_cropped = img[dino_region['top']:dino_region['bottom'] + 1, dino_region['left']:dino_region['right'] + 1, :]
     top_left, bottom_right = find_template(img_cropped, dino_template)
     top_left = (top_left[0] + dino_region['left'], top_left[1] + dino_region['top'])
@@ -43,7 +43,7 @@ def watch(monitor):
 
             # Get raw pixels from the screen, save it to a Numpy array
             frame = numpy.array(sct.grab(monitor))
-            img = cv2.cvtColor(frame, cv2.COLOR_RGBA2BGR)
+            img = cv2.cvtColor(frame, cv2.COLOR_RGBA2RGB)
             mark_dino(img, dino_template)
             # mark_template(img, dino_template)
 
@@ -55,12 +55,12 @@ def watch(monitor):
             pb.print_progress(fps)
 
             # Press "q" to quit
-            if cv2.waitKey(5) & 0xFF == ord("q"):
+            if cv2.waitKey(1) & 0xFF == ord("q"):
                 cv2.destroyAllWindows()
                 print()
                 break
 
 if __name__ == "__main__":
-    monitor = {"top": 0, "left": 0, "width": 500, "height": 500}
+    monitor = {"top": 300, "left": 0, "width": 500, "height": 450}
     watch(monitor)
     # progress bar in loop, sleep 0.5 seconds, 100 increments, max of 100, carriage return \r

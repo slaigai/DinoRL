@@ -65,7 +65,7 @@ if __name__ == "__main__":
 		# is_game_over
 		#     Runner.instance_.crashed
 
-		watch({"top": 0, "left": 0, "width": 500, "height": 375})
+		watch({"top": 150, "left": 0, "width": 500, "height": 225})
 
 	finally:
 		driver.quit()
